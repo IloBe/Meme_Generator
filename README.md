@@ -99,22 +99,25 @@ COPY <SRC> <DTS>
 RUN <COMMANDS_AT_BUILD_TIME>
 CMD <ENTRY_COMMANDS_AT_RUNTIME>
 ```
-which is in our case extended by the WORKDIR parameter defining the current Docker image 
-directory.
+which is in our case extended by the WORKDIR parameter defining the current directory in the Docker image.
 
-The Docker image is created by the command:
+The Docker image - the private file system providing all files and codes the container needs - 
+is created with help of the Dockerfile by the command:
 ```
-docker build -t python_meme_generator
+docker build -t pythonmemegenerator .
 ```
 
-Some Docker commands to work with:
+After this build, here are some Docker commands to work with:
 - **docker ps -a** shows all Docker container, running or not
 - **docker image ls** listed all downloaded Docker images
-- **docker image prune** removes all unused Docker images
+- **docker run –help** shows all information about the run command usage
 - ...
 
-The created Docker image and its container are not pushed to Docker-Hub. All files are 
-stored on this GitHub repository only.
+The created Docker image and its container are not pushed to Docker-Hub. All files to create 
+the image are stored on this GitHub repository only. If you want to share a docker image, 
+you must be signed in to Docker Hub and use the following commands:
+- docker tag pythonmemegenerator /pythonmemegenerator
+- docker push /pythonmemegenerator
 
 #### 1.4 Project Implementation Structure
 Our final project software is structured like this:
@@ -132,9 +135,10 @@ your own virtual environment.
 
 Or you can use the Docker container including the Docker image of our project. It includes 
 all installation dependencies and installs them for you automatically.
-Run it with the following command in the directory you want to use as project home:
+Run it with the following command in the directory you want to use as project home and by 
+delivering a container name and port:
 ```
-docker run --rm -v `pwd`:/app_home python_meme_generator
+docker run -p 80:80 --name container-memegenerator pythonmemegenerator
 ```
 
 #### 2.2 Getting started
@@ -225,4 +229,4 @@ to quit the meme application.
 
 ## License
 This project coding is released under the 
-[MIT Licence](https://github.com/IloBe/Meme_Generator/blob/main/LICENSE).
+[MIT License](https://github.com/IloBe/Meme_Generator/blob/main/LICENSE).
