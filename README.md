@@ -225,4 +225,4 @@ to quit the meme application.
 
 ## License
 This project coding is released under the 
-[MIT Licence](https://github.com/IloBe/Meme_Generator/blob/main/LICENCE).
+[MIT Licence](https://github.com/IloBe/Meme_Generator/blob/main/LICENSE).
