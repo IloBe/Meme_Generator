@@ -130,7 +130,26 @@ Image source - own created image
 
 #### 2.1 Installation
 For implementing this project *Python V3.9.12* is used in a virtual environment.
-For working with this codings, you can use the *requirements.txt* file directly to create 
+
+As **first prerequisite**, we need to install `xpdf` library. For Windows, you'll need to:
+- Download the Windows command-line tools from the [xpdf website](https://www.xpdfreader.com/download.html). 
+- Unzip the files in a location of your choice. 
+- Get the full file path to the folder named bin32 (if you have a 32-bit machine) or bin64 (if you have a 64-bit machine). 
+- Add this path to the Path environment variable. This will allow you to use the xpdf command from the command line. 
+If you've never done this before, check out this [Stack Overflow post](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho) 
+on how to add a folder to the Path environment variable. 
+
+**Second prerequisite** is having the non-python library `pdftotext` installed used by a subprocess call for pdf documents.
+According to PyPi information about the [library](https://pypi.org/project/pdftotext/) on Windows it is currently tested only 
+when using conda by following the process:
+- Install the Microsoft Visual C++ Build Tools
+- Install poppler through conda:<br>
+	    `conda install -c conda-forge poppler`
+
+Then install the library as usual:
+- pip install pdftotext
+<br>
+Afterwards, working with this codings, you can use the *requirements.txt* file directly to create 
 your own virtual environment.
 
 Or you can use the Docker container including the Docker image of our project. It includes 
