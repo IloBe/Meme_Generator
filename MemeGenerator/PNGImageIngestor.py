@@ -55,14 +55,14 @@ class PNGImageIngestor(ImageIngestorInterface):
                 new_height = int(width * in_img.size[1] / float(in_img.size[0]))
                 new_size = (width, new_height)
                 in_img = in_img.resize(new_size, Image.ANTIALIAS)
-                in_img.show()
+                #in_img.show()  # for testing only
                 print(f'mod image size: {in_img.size}')
                 cls.LOGGER.info(f'New mod image size: {in_img.size}')
                 #print(f'original image bands shall be RGB: {in_img.getbands()}')
 
                 # create grayscale image
                 gray_img = in_img.convert("L")
-                gray_img.show()
+                #gray_img.show()  # for testing only
                 print(f'converted image bands shall be L for grayscale: {gray_img.getbands()}')
 
                 save_path = pathlib.Path.joinpath(img_parent, 'mod_'+img_name)
