@@ -154,15 +154,11 @@ python app.py
 ```
 means, on localhost with port number 3001.
 
-- Then on your browser using the *original given app.run() method*, the call works fine with 
-```
-http://localhost:3001
-```
-to start the web application. But using the browser call:
+- Then on your browser using the *original given app.run() method*, by using the call 
 ```
 https://localhost:3001
 ```
-to start the web application with the original app.run() task, the following error appears:
+to start the web application the following error appears:
 - code 400, message Bad HTTP/0.9 request type
 
 Therefore the **Flask run() task** has been changed by adding the parameter *ssl_context='adhoc'*.
