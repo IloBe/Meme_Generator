@@ -1,5 +1,4 @@
 [//]: # (Image References)
-[image1]: ./Docker_image.png "Docker icon"
 [image2]: ./Python_Meme_Generator_project_structure.png "Python project structure"
 [image3]: ./Meme_wolf_example.png "Meme example"
 
@@ -14,19 +13,6 @@ words including images with an overlaid quote.
 Amongst others, motivation for project implementation are the usage of object-oriented 
 concepts of Python, regarding decorators, DRY (don’t repeat yourself) principles of class 
 resp. method design and working with modules and packages.
-
-As an improvement, the source code is handled by containerisation mechanism with 
-[Docker](https://www.docker.com/products/docker-desktop/) for having an isolated 
-application. 
-
-![Docker icon:][image1]
-[Image source](https://www.docker.com/products/docker-desktop/)
-
-Nevertheless, the project includes a *requirements.txt* file containing 
-used library dependencies.
-
-The realisation of this containerisation concept is based on the medium blog post of 
-[Angelica Lo Duca](https://towardsdatascience.com/how-to-run-a-data-science-project-in-a-docker-container-2ab1a3baa889).
 
 <br>
 
@@ -81,53 +67,7 @@ make_meme(self, img_path, text, author, width=500) -> str
 ```
 <br>
 
-#### 1.3 Docker
-For creation of the Docker image and Docker container *Docker desktop for Windows V4.8.1* 
-(at least Windows 10 as basic operating system) is used. It is expected, because during 
-its installation WSL 2 is recommended instead of Hyper-V, Docker usage is possible in 
-Windows Container modus only (e.g. Windows Server Core). With this version Docker-Compose 
-is included already.
-
-If you want to work with docker desktop, take care of the *service agreement*. For this 
-project it is for private use and therefore for free.
-
-Regarding the deployment of the application, a *Docker image* is build which runs in a 
-*Docker container*. Thus, we need at least
-- our application source code and 
-- a [Dockerfile](https://docs.docker.com/engine/reference/builder/) to build the image.
-
-
-So, our workflow is *Dockerfile –> Docker Image –> Docker Container*.
-
-As Angelica writes, the basic structure of the Dockerfile is
-```
-FROM <BASE_IMAGE>
-COPY <SRC> <DTS>
-RUN <COMMANDS_AT_BUILD_TIME>
-CMD <ENTRY_COMMANDS_AT_RUNTIME>
-```
-which is in our case extended i.a. by the WORKDIR parameter defining the current directory in the Docker image.
-
-The Docker image - the private file system providing all files and codes the container needs - 
-is created with help of the Dockerfile by the command:
-```
-docker build -t pythonmemegenerator .
-```
-
-After this build, here are some Docker commands to work with:
-- **docker ps -a** shows all Docker container, running or not
-- **docker image ls** listed all downloaded Docker images
-- **docker run –help** shows all information about the run command usage
-- for more see [fosstechnix cheat-sheet](https://www.fosstechnix.com/docker-command-cheat-sheet/)
-
-The created Docker image and its container are not pushed to Docker-Hub. All files to create 
-the image are stored on this GitHub repository only. If you want to share a docker image, 
-you must be signed in to Docker Hub and use the following commands:
-- docker tag pythonmemegenerator /pythonmemegenerator
-- docker push /pythonmemegenerator
-<br>
-
-#### 1.4 Project Implementation Structure
+#### 1.3 Project Implementation Structure
 Our final project software is structured like this:
 
 ![Python project structure:][image2]
@@ -139,54 +79,45 @@ Image source - own created image
 
 #### 2.1 Installation
 For implementing this project *Python V3.9.12* is used in a virtual environment called **meme**.
-So in general, a conda installation is expected. For our Docker handling we deliver an *environment.yml* file,
-needed for conda inside the Dockerfile. Furthermore, we need the C++ library `pdftotext`, therefore some 
+So in general, a conda installation is expected. Furthermore, we need the C++ library `pdftotext`, therefore some 
 conditions exist to be fulfilled.
 
-As **first prerequisite**, we need to install `xpdf` library. For *Windows*, you'll need to:
+As **first prerequisite**, according to pypi information about the [library](https://pypi.org/project/pdftotext/) on Windows, it is currently tested only 
+when using conda by following the mentioned process. This library relys on the *poppler* library which is a utility for rendering PDFs and 
+it is common to Linux systems, but not Windows! So, we have to install it by ourself:
+- Install the Microsoft Visual C++ Build Tools
+- Install *poppler* through conda:<br>
+	$ conda install -c conda-forge poppler
+
+**Second prerequisite** is having the C++ library `pdftotext` installed used by a subprocess call for pdf documents. Therefore, we need to install `xpdf` library which includes such tool. For *Windows*, you'll need to:
 - Download the Windows command-line tools from the [xpdf website](https://www.xpdfreader.com/download.html). 
 - Unzip the files in a location of your choice. 
-- Get the full file path to the folder named bin32 (if you have a 32-bit machine) or bin64 (if you have a 64-bit machine). 
-- Add this path to the Path environment variable. This will allow you to use the xpdf command from the command line. 
-If you've never done this before, check out this [Stack Overflow post](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho) 
-on how to add a folder to the Path environment variable. 
+- Get this full file path to the folder named bin32 (if you have a 32-bit machine) or bin64 (if you have a 64-bit machine). 
+- Add this path to the Path environment variable of your system. This will allow you to use the xpdf command from the command line. 
+If you've never done this before, for Windows systems: check out this [Stack Overflow post](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho) on how to add a folder to the Path environment variable. 
 
 For *Linux*, you can use [Homebrew](https://brew.sh/) or apt-get to install via
 ```
 sudo apt-get install -y xpdf 
 ```
-in your command line interface. Note: the project is tested with Windows 8 (general behaviour without docker) and Windows 10 (with Docker) only.
-
-**Second prerequisite** is having the C++ library `pdftotext` installed used by a subprocess call for pdf documents.
-According to pypi information about the [library](https://pypi.org/project/pdftotext/) on Windows it is currently tested only 
-when using conda by following the process. This library relys on the *poppler* library which is a utility for rendering PDFs and 
-it is common to Linux systems, but not Windows!
-- Install the Microsoft Visual C++ Build Tools
-- Install *poppler* through conda:<br>
-	$ conda install -c conda-forge poppler
+in your command line interface. Note: the project is tested with Windows 8 and Windows 10 only. 
 
 <br>
-Afterwards, for working with this project codings, you can use the *requirements.txt* file directly to create 
+
+**Afterwards**, for working with this project codings, you can use the *requirements.txt* file directly to create 
 your own virtual environment. This file has been created with the *pip freeze* command, so, all libraries are included installed 
-via pip for the virtual environment. Inside that environment, their installation happens e.g. by calling
+via pip for the projects virtual environment. Inside that environment, the installation happens e.g. by calling
 ```
 pip install -r requirements.txt
 ```
-<br>
 
-Or we start a Docker container based on the Docker image of our previous project step. It includes 
-all installation dependencies and installs them for you automatically. Running the container launches
-the application with private resources, isolated from the rest of the machine.
-Run it with the following command in the directory you want to use as project home:
-```
-docker run -p 80:80 --name container-memegenerator pythonmemegenerator
-```
 <br>
 
 #### 2.2 Getting started
-We can start the appliation via terminal with **main.py** or by Flask call with **app.py**.
-So, change to the associated directory that includes these files and execute it.
-Depending on your Python environment it is started with command 'python' or 'python3'.
+We can start the appliation via CLI terminal with **main.py** or by Flask call with **app.py**.
+So, change to the associated project directory that includes these files and execute it.
+Depending on your Python environment configuration, it is started with command 'python' or 'python3'.
+Having Python 3 versions installed and configured, we use 'python' during the following text.
 
 ##### 2.2.1 CLI with or without arguments
 The **main.py** script can be invoked from the command line with and without arguments.
@@ -196,7 +127,7 @@ to handle string sentences including blanks.<br>
 Have in mind that all such arguments always belong together.
 
 ```
-$ python3 main.py [args] with args being --path, --body, --author
+$ python main.py [args] with args being --path, --body, --author
 ```
 
 The script returns a path to a generated image stored in the 'tmp' directory of the project. 
