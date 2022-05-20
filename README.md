@@ -28,6 +28,12 @@ we'll be overlaying on images.
 Furthermore, we actual preprocess our images - default ones of .jpg dogs and .png wolfs 
 are given - using `Pillow`.
 
+As font .ttf file standard arial is added.
+
+Regarding the project structure, some files and directories are relevant for development 
+but not for the application, like log files or the mypy cache directory. They are 
+excluded via .gitignore files.
+
 **Our main modules are:**
 #### 1.1 Quote Engine
 The Quote Engine module is responsible for ingesting many types of files containing quotes.
