@@ -43,6 +43,7 @@ class MemeEngine():
         if not os.path.exists(out_dir):
             os.makedirs(out_dir)
         self.out_dir = out_dir
+	self.font_path = './Fonts/'
         self.logger = logging.getLogger(__name__)
 
     def __str__(self):
@@ -74,7 +75,7 @@ class MemeEngine():
         meme_img = Image.open(mod_path)
         quote = text + '\n' + author
         self.logger.info(f'Second, we take care of the given quote: "{quote}"')
-        font = ImageFont.truetype('arial.ttf', 15)    #'HelveticaNarrow-Bold', 20)
+        font = ImageFont.truetype(self.font_path+'arial.ttf', 15)    #'HelveticaNarrow-Bold', 20)
         txt_pos_x = random.choice(range(10, meme_img.size[0]-200))
         txt_pos_y = random.choice(range(10, meme_img.size[1]-30))
         draw = ImageDraw.Draw(meme_img)
