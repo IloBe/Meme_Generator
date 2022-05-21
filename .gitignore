@@ -31,6 +31,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+'meme'
 
 # mypy
 .mypy_cache/
