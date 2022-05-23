@@ -74,7 +74,14 @@ Or as another option use the already known *Random* or *Creator* buttons to star
 
 <br>
 
-## Something Weird Appears
+## Application Ending
+Have in mind, that this is still a simple browser application, because main project focus has been object-oriented programming and quality concepts 
+regarding software engineering, so, you can stop the application by simplest ending only:
+- on command-line terminal press CTRL+C to quit the meme application.
+
+<br>
+
+## Additional Final Note: Something Weird Appears
 Being a human, mistakes may happen which have not been foreseen. So, if you are playing around with this software and get an image like this, 
 please tell me via *GitHub issue* creation about your workflow that leads to that situation. 
 
