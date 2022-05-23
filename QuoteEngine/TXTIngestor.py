@@ -1,4 +1,4 @@
-""" Ingestor class of txt document files """
+"""Ingestor class of txt document files."""
 
 ##############################
 # Imports
@@ -14,8 +14,9 @@ from .QuoteModel import QuoteModel
 ##############################
 class TXTIngestor(IngestorInterface):
     """
-    Concrete child class of IngestorInterface,
-    implementing the parse() function for txt documents
+    Concrete child class of IngestorInterface.
+
+    It implements the parse() function for txt documents
     to read quote block and author name.
 
     returns: List[QuoteModel]
@@ -25,17 +26,16 @@ class TXTIngestor(IngestorInterface):
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
-        '''
-        Parses the content of the given txt document including
-        a body and author column values separated by comma.
+        """
+        Parse the content of the given txt document.
 
         input:
         path: (str) path of the txt document
         raise exception if the doc type is wrong (not txt)
 
         returns: List[QuoteModel]; model list of quotes and author
-        names created of each line of the document
-        '''
+        names created of each line of the document not being empty
+        """
         if not cls.can_ingest(path):
             raise Exception(f'CSVIngestor: cannot ingest file {path}')
 
