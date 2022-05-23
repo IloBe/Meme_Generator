@@ -1,6 +1,10 @@
 [//]: # (Image References)
-[image2]: ./Python_Meme_Generator_project_structure.png "Python project structure"
-[image3]: ./Meme_wolf_example.png "Meme example"
+[image1]: ./assets/creatorExample_Berlin-IvanKarpov.png "None wrapped text"
+[image2]: ./assets/MemeWithVeryLongWordSplittedByTextWrapper.png "Wrong wrapped text"
+[image3]: ./assets/mod_photo-1651307313221-51c1ce725da6.jpg "Correct wrapped text"
+[image4]: ./assets/Python_Meme_Generator_project_structure.png "Python project structure"
+[image5]: ./assets/Meme_wolf_example.png "Random button example"
+[image6]: ./assets/greeceImageIvanKarpov_quoteKhalilGibran.png "Creator button example"
 
 # Python Meme Generator Project
 
@@ -8,9 +12,14 @@
 
 Welcome to this project to build a **Meme Generator Application** for random or customized 
 images. The goal is a multimedia application of dynamically generating memes, in other 
-words including images with an overlaid quote.
+words including images with an overlaid quote. So, not a real meme :smile:, but something to
+put text on an image. The partly beautiful, professional photos are from unsplash collections
+of [Ivan Karpov](https://unsplash.com/@ivkrpv). The wolf images are from 
+[freepngs.com](https://www.freepngs.com/wolf-pngs?pgid=ivye5l9w-25173dad-5461-11e8-a9ff-063f49e9a7e4)
+and the dog images are delivered by [Udacity](https://www.udacity.com/) and this project 2 of the course 
+*IntermediatePython*.
 
-Amongst others, motivation for project implementation are the usage of object-oriented 
+Amongst others, main motivation for project implementation are the usage of object-oriented 
 concepts of Python, regarding decorators, DRY (don’t repeat yourself) principles of class 
 resp. method design and working with modules and packages.
 
@@ -21,12 +30,13 @@ resp. method design and working with modules and packages.
 ### 1. Project Structure
 Beside the top level source code, the project is separated in Python modules for quote 
 handling and meme image creation.
-Some logging is added for module parts via `__init__.py` files.
+Some logging is added for module parts via `__init__.py` files and `app.logger` for the 
+Flask application part.
 
-Regarding the application workflow, we use different files for the types of quotes that 
-we'll be overlaying on images.
+Regarding the general application workflow, we use different files for the types of quotes 
+that we'll be overlaying on images.
 Furthermore, we actual preprocess our images - default ones of .jpg dogs and .png wolfs 
-are given - using `Pillow`.
+are given - using `Pillow`. Photo URL delivered .webp files are converted to .jpg images.
 
 As font .ttf file standard arial is added.
 
@@ -65,6 +75,14 @@ image preprocessing happens:
 - resizing the image, so, the width is at most 500px and the height is scaled proportionally 
 (preserve aspect ratio)
 - additionally, .png images are transformed to grayscale images
+- text wrapping happens for long text parts, so, the whole text can be included inside the
+bounding box of the image including some marginal free space. A litte mistake is still there: 
+If a word is too long for font depending text bounding box, the text wrapper instance breaks 
+it down into few parts, fitting to availabe position area.
+The separation might not fit to spelling as shown in the following example images.
+
+![None wrapped text][image1], ![Wrong wrapped text][image2], ![Correct wrapped text][image3]
+
 
 The class implements the following instance method signature which returns the path to 
 the manipulated meme image:
@@ -76,7 +94,7 @@ make_meme(self, img_path, text, author, width=500) -> str
 #### 1.3 Project Implementation Structure
 Our final project software is structured like this:
 
-![Python project structure:][image2]
+![Python project structure][image4]
 Image source - own created image
 
 <br>
@@ -85,8 +103,8 @@ Image source - own created image
 
 #### 2.1 Installation
 For implementing this project *Python V3.9.12* is used in a virtual environment called **meme**.
-So in general, a conda installation is expected. Furthermore, we need the C++ library `pdftotext`, therefore some 
-conditions exist to be fulfilled.
+All tests have happened on different Windows systems. So in general, an appropriate conda installation is expected. 
+Furthermore, we need the C++ library `pdftotext`, therefore some conditions exist to be fulfilled.
 
 As **first prerequisite**, according to pypi information about the [library](https://pypi.org/project/pdftotext/) on Windows, it is currently tested only 
 when using conda by following the mentioned process. This library relys on the *poppler* library which is a utility for rendering PDFs and 
@@ -196,11 +214,13 @@ image by user click on a button or creates a new meme by given user information 
 path, quote body and author. It uses the `requests` package to fetch an image from 
 a submitted URL. The newly created meme images are stored in the *static* directory of the project.
 
-Note: It is still a simple application, so, if you want to stop it, on command-line terminal press *CTRL+C* 
-to quit the meme application.
+A small *user guidance* delivers the [readme file]((https://github.com/IloBe/Meme_Generator/blob/main/app/README.md)) of this projects app directory.
 
-![Meme example:][image3]
-[Image source](https://www.udacity.com/) and there project 2 of the course *IntermediatePython*.
+Note: It is still a simple application, so, if you want to stop it, on command-line terminal press *CTRL+C* 
+to quit the meme application. If something went wrong with your input parameters a page-not-found message with 
+some additional information appears.
+
+![Random button example][image5], ![Creator button example][image6]
 
 <br>
 
