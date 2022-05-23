@@ -53,6 +53,8 @@ As an important note:
 - The URL attribute parameter must be a real image URL from the web. If you use a directory path from your system, the workflow aborts.
 - If you write an arbitrary character string (not starting with https: or http:) you will see a message in your configured system language
 to add a valid URL.
+- If you have added an URL of a .jpg, .png or .webp file and have not added one of this extensions (in upper- or lowercase characters), 
+the software will convert your file to a .jpg image automatically.
 
 But if your input to the mentioned attribute parameters are fine and the workflow happens correctly, you will see your meme. Something like
 
