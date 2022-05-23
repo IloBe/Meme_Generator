@@ -1,4 +1,4 @@
-""" General image ingestor class to encapsulate specific helper classes """
+"""General image ingestor class to encapsulate specific helper classes."""
 
 ##############################
 # Imports
@@ -15,8 +15,9 @@ from .PNGImageIngestor import PNGImageIngestor
 ##############################
 class ImageIngestor(ImageIngestorInterface):
     """
-    Factory to select and return the specific ImageIngestor class,
-    modify_imge() result depends on file type extension.
+    Factory to select and return the specific ImageIngestor class.
+
+    Function modify_imge() result depends on file type extension.
 
     Allowed are jpg, jpeg and png images.
     The png images we are using are from:
@@ -24,24 +25,26 @@ class ImageIngestor(ImageIngestorInterface):
     """
 
     @classmethod
-    def in_extension(cls, ext:str) -> bool:
+    def in_extension(cls, ext: str) -> bool:
         """
         Check if the extension is in valid extension list.
+
         Valid types are .jpg, .jpeg and .png.
 
         input:
         ext: (str) given image extension
 
-		return: Boolean value if ext in extension or not
+        return: Boolean value if ext in extension or not
         """
-        img_ext = ['.jpg', '.jpeg', '.png', '.JPG', '.JPEG', '.PNG']
+        img_ext = ['.jpg', '.jpeg', '.png', '.JPG', '.JPEG', '.PNG', '.webp', '.WEBP']
         return ext in img_ext
 
     @classmethod
     def modify_image(cls, img_path: str, width: int) -> str:
         """
-        Encapsulates the specific ImageIngestor helper classes and
-        their modification result based on given image type.
+        Encapsulate the specific ImageIngestor helper classes.
+
+        Their modification result is based on given image type.
 
         input:
         img_path: (str) specific image and its path information
@@ -54,12 +57,16 @@ class ImageIngestor(ImageIngestorInterface):
         img_ext = pathlib.Path(img_path).suffix
         if not cls.in_extension(img_ext):
             cls.LOGGER.error(
-                f'Wrong image type, ValueError is thrown; img_ext: "{img_ext}"')
+                f'Wrong image type, throws ValueError; img_ext: "{img_ext}"')
             raise ValueError(f'ImageIngestor: wrong extension {img_ext}')
 
         if img_ext in ['.jpg', '.jpeg', '.JPG', '.JPEG']:
             preproc_path = JPGImageIngestor.modify_image(img_path, width)
         if img_ext in ['.png', '.PNG']:
             preproc_path = PNGImageIngestor.modify_image(img_path, width)
+        if img_ext in ['.webp', '.WEBP']:
+            # use jpg ingestor not having a grayscale transformation as it
+            # is implemented for png images with png ingestor instance
+            preproc_path = JPGImageIngestor.modify_image(img_path, width)
 
         return preproc_path
