@@ -1,4 +1,4 @@
-""" Ingestor class of pdf document files """
+"""Ingestor class of pdf document files."""
 
 ##############################
 # Imports
@@ -18,8 +18,9 @@ from .QuoteModel import QuoteModel
 ##############################
 class PDFIngestor(IngestorInterface):
     """
-    Concrete child class of IngestorInterface,
-    implementing the parse() function for pdf documents
+    Concrete child class of IngestorInterface.
+
+    It implements the parse() function for pdf documents
     to read quote block and author name.
 
     returns: List[QuoteModel]
@@ -29,6 +30,16 @@ class PDFIngestor(IngestorInterface):
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
+        """
+        Parse the content of the given pdf document.
+
+        input:
+        path: (str) path of the pdf document
+        raise exception if the doc type is wrong (not pdf)
+
+        returns: List[QuoteModel]; model list of quotes and author
+        names created of each line of the document not being empty
+        """
         if not cls.can_ingest(path):
             raise Exception(f'PDFIngestor: cannot ingest file {path}')
 
