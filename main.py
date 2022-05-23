@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
+
 """
 Create meme images from given images, text quote bodies and author.
+
 You can assign specific image and quote via own argument information.
 
 So, this script can be invoked from the command line with and without
@@ -8,6 +10,7 @@ arguments. If no argument is given, a random meme is created. By
 using your own arguments for --body and --author put double quotes
 around them to handle string sentences and have in mind that they
 always belong together.
+Depending on your environment use as CLI command:
     $ python3 main.py [args] with args being --path, --body, --author
 
 Note: Another option to create meme images are the usage of the
@@ -54,13 +57,15 @@ def generate_meme(path=None, body=None, author=None) -> str:
             imgs = []
             imgs_wolf = []
             for root, dirs, files in os.walk(images):
-                print(f'for path argument, dog:\n- root: {root}\n- dirs: {dirs}\n- files: {files}')
+                print('for path argument, dog:')
+                print(f'- dirs: {dirs}\n- files: {files}')
                 imgs = [os.path.join(root, name) for name in files]
 
             # png images
             images = "./_data/photos/wolf/"
             for root, dirs, files in os.walk(images):
-                print(f'for path argument, wolf:\n- root: {root}\n- dirs: {dirs}\n- files: {files}')
+                print('for path argument, wolf:')
+                print(f'- root: {root}\n- dirs: {dirs}\n- files: {files}')
                 imgs_wolf = [os.path.join(root, name) for name in files]
 
             imgs.extend(imgs_wolf)
@@ -79,7 +84,7 @@ def generate_meme(path=None, body=None, author=None) -> str:
             quotes = []
             for quote_file in quote_files:
                 quotes.extend(Ingestor.parse(quote_file))
-            quote = random.choice(quotes)	
+            quote = random.choice(quotes)
         else:
             if author is None:
                 raise Exception('Author required if body param is used')
@@ -121,5 +126,5 @@ if __name__ == "__main__":
     print(f'- args.body: "{args.body}"')
     print(f'- args.author: "{args.author}"')
     final_path = generate_meme(args.path, args.body, args.author)
-    msg = "No meme created because of wrong arguments"
+    msg = "main() messge: No meme path created because of wrong workflow ..."
     print(f'Path of created meme: {msg if final_path is None else final_path}')
