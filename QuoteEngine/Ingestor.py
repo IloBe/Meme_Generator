@@ -1,4 +1,4 @@
-""" General Ingestor class to encapsulate the specific helper classes """
+"""General Ingestor class to encapsulate the specific helper classes."""
 
 ##############################
 # Imports
@@ -19,29 +19,33 @@ from .QuoteModel import QuoteModel
 ##############################
 class Ingestor(IngestorInterface):
     """
-    Factory to select and return the specific Ingestor class,
-    parsing result depends on file type extension.
+    Factory to select and return the specific Ingestor class.
+
+    The parsing result depends on file type extension.
     """
 
     @classmethod
     def in_extension(cls, ext) -> bool:
         """
         Check if the valid document extension exits.
+
         Valid are .docx, .csv, .txt and .pdf.
 
         input:
         ext: (str) document extension
 
-		return: True or False depending if ext param is in valid list
+        return: True or False depending if ext param is in valid list
         """
         file_ext = ['.docx', '.csv', '.txt', '.pdf']
         return ext in file_ext
 
     @classmethod
-    def parse(cls, path) -> List[QuoteModel]:
+    def parse(cls, path: str) -> List[QuoteModel]:
         """
-        Encapsulates the specific Ingestor helper classes and
-        their parse result based on given file type.
+        Encapsulate the specific Ingestor helper classes.
+
+        Additionally, depending on the given file type
+        their parse result is encapsulated as well.
 
         input:
         path: (str) specific file and its path information
