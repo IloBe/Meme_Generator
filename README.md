@@ -228,7 +228,7 @@ Note: It is still a simple application, so, if you want to stop it, on command-l
 to quit the meme application. If something went wrong with your input parameters a page-not-found message with 
 some additional information appears.
 
-A small *user guidance* delivers the [readme file]((https://github.com/IloBe/Meme_Generator/blob/main/app/README.md)) 
+A small *user guidance* delivers the [readme file](https://github.com/IloBe/Meme_Generator/tree/main/app#readme) 
 of this projects *app directory*.
 
 ![Random button example][image5], ![Creator button example][image6]
