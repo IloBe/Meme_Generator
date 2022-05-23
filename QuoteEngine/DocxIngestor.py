@@ -1,4 +1,4 @@
-""" Ingestor class of docx document files """
+"""Ingestor class of docx document files."""
 
 ##############################
 # Imports
@@ -15,12 +15,13 @@ from .QuoteModel import QuoteModel
 ##############################
 class DocxIngestor(IngestorInterface):
     """
-    Concrete child class of IngestorInterface,
-    implementing the parse() function for docx documents
+    Concrete child class of the IngestorInterface.
+
+    It implements the parse() function for docx documents
     to read quote block and author name.
 
-	For docx Document see:
-	https://python-docx.readthedocs.io/en/latest/
+    For docx Document see:
+    https://python-docx.readthedocs.io/en/latest/
 
     returns: List[QuoteModel]
     """
@@ -29,8 +30,8 @@ class DocxIngestor(IngestorInterface):
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
-        '''
-        Parses the content of the given docx document.
+        """
+        Parse the content of the given docx document.
 
         input:
         path: (str) path of the docx document
@@ -38,7 +39,7 @@ class DocxIngestor(IngestorInterface):
 
         returns: List[QuoteModel]; model list of quotes and author
         names created of each line of the document not being empty
-        '''
+        """
         if not cls.can_ingest(path):
             raise Exception(f'DocxIngestor: cannot ingest file {path}')
 
