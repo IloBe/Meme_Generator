@@ -1,4 +1,4 @@
-""" QuoteEngine package initialisation """
+"""QuoteEngine package initialisation."""
 
 ###############
 # Imports
@@ -32,7 +32,7 @@ STR_CURRENT_DATE = datetime.today().strftime('%Y-%m-%d')
 
 
 def config_basic_root_logger():
-    """ Configure log format for root logger, append messages to log file. """
+    """Configure log format for root logger, append messages to log file."""
     logging.basicConfig(
         filename='./logs/meme_project_' + STR_CURRENT_DATE + '.log',
         level=logging.DEBUG,  # future toDo: could be set with CLI argument
@@ -42,7 +42,7 @@ def config_basic_root_logger():
 
 
 def get_logger():
-    """ Returns the root logger. """
+    """Return the root logger."""
     return logging.getLogger()
 
 
