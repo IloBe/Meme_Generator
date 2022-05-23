@@ -1,7 +1,7 @@
 [//]: # (Image References)
-[image1]: ./assets/creatorExample_Berlin-IvanKarpov_65perc.png "None wrapped text"
-[image2]: ./assets/MemeWithVeryLongWordSplittedByTextWrapper_65perc.png "Wrong wrapped text"
-[image3]: ./assets/mod_photo-1651307313221-51c1ce725da6_65perc.png "Correct wrapped text"
+[image1]: ./assets/creatorExample_Berlin-IvanKarpov_60perc.png "None wrapped text"
+[image2]: ./assets/MemeWithVeryLongWordSplittedByTextWrapper_60perc.png "Wrong wrapped text"
+[image3]: ./assets/mod_photo-1651307313221-51c1ce725da6_60perc.png "Correct wrapped text"
 [image4]: ./assets/Python_Meme_Generator_project_structure.png "Python project structure"
 [image5]: ./assets/Meme_wolf_example.png "Random button example"
 [image6]: ./assets/greeceImageIvanKarpov_quoteKhalilGibran_65perc.png "Creator button example"
