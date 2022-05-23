@@ -1,4 +1,4 @@
-""" Ingestor class of csv document files """
+"""Ingestor class of csv document files."""
 
 ##############################
 # Imports
@@ -15,19 +15,23 @@ from .QuoteModel import QuoteModel
 ##############################
 class CSVIngestor(IngestorInterface):
     """
-    Concrete child class of IngestorInterface,
-    implementing the parse() function for csv documents
+    Concrete child class of IngestorInterface.
+
+    It implements the parse() function for csv documents
     to read quote block and author name.
 
     returns: List[QuoteModel]
     """
+
     allowed_extensions = ['csv']
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
-        '''
-        Parses the content of the given csv document including
-        a body and author column values separated by comma.
+        """
+        Parse the content of the given csv document.
+
+        This parsing function includes body and author column values
+        separated by comma.
 
         input:
         path: (str) path of the csv document
@@ -35,7 +39,7 @@ class CSVIngestor(IngestorInterface):
 
         returns: List[QuoteModel]; model list of quotes and author
         names created of each line of the document, except the header
-        '''
+        """
         if not cls.can_ingest(path):
             raise Exception(f'CSVIngestor: cannot ingest file {path}')
 
