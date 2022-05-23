@@ -1,10 +1,10 @@
 [//]: # (Image References)
-[image1]: ./assets/creatorExample_Berlin-IvanKarpov_65%.png "None wrapped text"
-[image2]: ./assets/MemeWithVeryLongWordSplittedByTextWrapper_65%.png "Wrong wrapped text"
-[image3]: ./assets/mod_photo-1651307313221-51c1ce725da6_65%.jpg "Correct wrapped text"
+[image1]: ./assets/creatorExample_Berlin-IvanKarpov_65perc.png "None wrapped text"
+[image2]: ./assets/MemeWithVeryLongWordSplittedByTextWrapper_65perc.png "Wrong wrapped text"
+[image3]: ./assets/mod_photo-1651307313221-51c1ce725da6_65perc.png "Correct wrapped text"
 [image4]: ./assets/Python_Meme_Generator_project_structure.png "Python project structure"
 [image5]: ./assets/Meme_wolf_example.png "Random button example"
-[image6]: ./assets/greeceImageIvanKarpov_quoteKhalilGibran_65%.png "Creator button example"
+[image6]: ./assets/greeceImageIvanKarpov_quoteKhalilGibran_65perc.png "Creator button example"
 
 # Python Meme Generator Project
 
@@ -13,15 +13,21 @@
 Welcome to this project to build a **Meme Generator Application** for random or customized 
 images. The goal is a multimedia application of dynamically generating memes, in other 
 words including images with an overlaid quote. So, not a real meme :smile:, but something to
-put text on an image. The partly beautiful, professional photos are from unsplash collections
-of [Ivan Karpov](https://unsplash.com/@ivkrpv). The wolf images are from 
+put text on an image.
+
+The beautiful, professional photos are from unsplash collections of
+[Ivan Karpov](https://unsplash.com/@ivkrpv) for testing the URL access of the Flask application. 
+The wolf images are from 
 [freepngs.com](https://www.freepngs.com/wolf-pngs?pgid=ivye5l9w-25173dad-5461-11e8-a9ff-063f49e9a7e4)
-and the dog images are delivered by [Udacity](https://www.udacity.com/) and this project 2 of the course 
-*IntermediatePython*.
+and stored in the project data directory for random meme creation of the Flask application and for
+command line interface call of the application. The same applies for the dog images which are delivered 
+by [Udacity](https://www.udacity.com/) regarding this project 2 of the course *IntermediatePython*.
 
 Amongst others, main motivation for project implementation are the usage of object-oriented 
-concepts of Python, regarding decorators, DRY (don’t repeat yourself) principles of class 
+concepts of `Python`, regarding decorators, DRY (don’t repeat yourself) principles of class 
 resp. method design and working with modules and packages.
+
+Another project topic has been to follow [PEP 8](https://peps.python.org/pep-0008/#introduction) coding style guide and [PEP 257](https://peps.python.org/pep-0257/) docstring conventions which are checked by usage of the tools [pycodestyle](https://pypi.org/project/pycodestyle/) and [pydocstyle](https://pypi.org/project/pydocstyle/).
 
 <br>
 
@@ -38,7 +44,7 @@ that we'll be overlaying on images.
 Furthermore, we actual preprocess our images - default ones of .jpg dogs and .png wolfs 
 are given - using `Pillow`. Photo URL delivered .webp files are converted to .jpg images.
 
-As font .ttf file standard arial is added.
+As font .ttf file *standard arial* is added.
 
 Regarding the project structure, some files and directories are relevant for development 
 but not for the application, like log files or the mypy cache directory. They are 
@@ -56,7 +62,7 @@ Strategy *Ingestor helper classes* handle the different file types (csv, docx,
 pdf, txt) containing quotes by implementing the abstract base class `IngestorInterface` 
 method signatures:
 ```python3
-def can_ingest(cls, path) -> boolean
+def can_ingest(cls, path: str) -> boolean
 def parse(cls, path: str) -> List[QuoteModel]
 ```
 
@@ -75,16 +81,18 @@ image preprocessing happens:
 - resizing the image, so, the width is at most 500px and the height is scaled proportionally 
 (preserve aspect ratio)
 - additionally, .png images are transformed to grayscale images
-- text wrapping happens for long text parts, so, the whole text can be included inside the
+- text wrapping happens for long text parts, so, the whole text can be positioned inside the
 bounding box of the image including some marginal free space. A litte mistake is still there: 
 If a word is too long for font depending text bounding box, the text wrapper instance breaks 
 it down into few parts, fitting to availabe position area.
-The separation might not fit to spelling as shown in the following example images.
+The separation might not fit to spelling as shown in the following example images (non wrapped text, 
+wrong wrapped text, correct wrapped text).
 
 ![None wrapped text][image1], ![Wrong wrapped text][image2], ![Correct wrapped text][image3]
 
+<br>
 
-The class implements the following instance method signature which returns the path to 
+The MemeEngine class implements the following instance method signature which returns the path to 
 the manipulated meme image:
 ```
 make_meme(self, img_path, text, author, width=500) -> str
@@ -210,15 +218,18 @@ with SHA256 checksum bd284974e9c5a80902a2e5ea17660ad248cef3684da0b1ce4b58f48696c
 
 **So finally, if your meme browser app is running:**<br>
 The app uses the Quote Engine and Meme Generator modules to generate a random captioned meme
-image by user click on a button or creates a new meme by given user information about image
-path, quote body and author. It uses the `requests` package to fetch an image from 
-a submitted URL. The newly created meme images are stored in the *static* directory of the project.
-
-A small *user guidance* delivers the [readme file]((https://github.com/IloBe/Meme_Generator/blob/main/app/README.md)) of this projects app directory.
+image by user click (see left image example below) on a button or creates a new meme by given user 
+information about image path (URL of the graphic image or photo), quote body and author by specific 
+creator start page. There the Flask application uses the `requests` package to fetch an image from 
+a submitted URL (see right image example below). The newly created meme images are stored in the 
+*static* directory of the project.
 
 Note: It is still a simple application, so, if you want to stop it, on command-line terminal press *CTRL+C* 
 to quit the meme application. If something went wrong with your input parameters a page-not-found message with 
 some additional information appears.
+
+A small *user guidance* delivers the [readme file]((https://github.com/IloBe/Meme_Generator/blob/main/app/README.md)) 
+of this projects *app directory*.
 
 ![Random button example][image5], ![Creator button example][image6]
 
