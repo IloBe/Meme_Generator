@@ -1,10 +1,10 @@
 [//]: # (Image References)
-[image1]: ./assets/creatorExample_Berlin-IvanKarpov.png "None wrapped text"
-[image2]: ./assets/MemeWithVeryLongWordSplittedByTextWrapper.png "Wrong wrapped text"
-[image3]: ./assets/mod_photo-1651307313221-51c1ce725da6.jpg "Correct wrapped text"
+[image1]: ./assets/creatorExample_Berlin-IvanKarpov_65%.png "None wrapped text"
+[image2]: ./assets/MemeWithVeryLongWordSplittedByTextWrapper_65%.png "Wrong wrapped text"
+[image3]: ./assets/mod_photo-1651307313221-51c1ce725da6_65%.jpg "Correct wrapped text"
 [image4]: ./assets/Python_Meme_Generator_project_structure.png "Python project structure"
 [image5]: ./assets/Meme_wolf_example.png "Random button example"
-[image6]: ./assets/greeceImageIvanKarpov_quoteKhalilGibran.png "Creator button example"
+[image6]: ./assets/greeceImageIvanKarpov_quoteKhalilGibran_65%.png "Creator button example"
 
 # Python Meme Generator Project
 
