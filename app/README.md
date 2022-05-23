@@ -60,6 +60,9 @@ But if your input to the mentioned attribute parameters are fine and the workflo
 
 ![Correct creator workflow][image3]
 
+<br>
+
+## Forseen Exceptions
 Nevertheless as you know, dealing with the web may end up in exceptions and unknown issues. As a simple example, the server your image is on is down.
 In this cases, the application will lead you to another page, telling you that your page is not found and some additional information.
 
