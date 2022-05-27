@@ -186,5 +186,6 @@ def meme_post():
 
 if __name__ == "__main__":
     # use this run command for development only, not for production server,
-    # because valid secure certificate is not created
-    app.run(host='0.0.0.0', port=3001, ssl_context='adhoc', debug=True)
+    # because valid secure certificate is not created;
+    # for public repo: debug mode is set to False, avoid security risk
+    app.run(host='0.0.0.0', port=3001, ssl_context='adhoc', debug=False)
