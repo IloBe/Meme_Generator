@@ -24,7 +24,7 @@ numpy==1.22.3
 openpyxl==3.0.7
 pandas==1.4.2
 pdftotext==2.2.2
-Pillow==9.1.0
+Pillow==9.1.1
 platformdirs==2.5.2
 pycparser==2.21
 pyOpenSSL==22.0.0
