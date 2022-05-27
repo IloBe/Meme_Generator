@@ -27,9 +27,23 @@ def internal_server_error(InternalServerError):
 
 
 def get_app_instance():
-    """Return the app instance using customised error handlers."""
+    """
+    Return the app instance using customised error handlers.
+
+    Set some security configurations according this blog post:
+    https://www.securecoding.com/blog/flask-security-best-practices/
+
+    Security test happens via Snyk app on https://app.snyk.io
+    """
     app = Flask(__name__,
                 template_folder='../templates', static_folder='../static')
+
+    app.config.update(
+        SESSION_COOKIE_SECURE=True,
+        SESSION_COOKIE_HTTPONLY=True,
+		SESSION_COOKIE_SAMESITE='Lax',
+    )
+    
     app.register_error_handler(404, page_not_found)
     app.register_error_handler(500, internal_server_error)
     return app
