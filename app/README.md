@@ -63,8 +63,11 @@ But if your input to the mentioned attribute parameters are fine and the workflo
 <br>
 
 ## Forseen Exceptions
-Nevertheless as you know, dealing with the web may end up in exceptions and unknown issues. As a simple example, the server your image is on is down.
-In this cases, the application will lead you to another page, telling you that your page is not found and some additional information.
+Nevertheless as you know, dealing with the web may end up in exceptions and unknown issues. As a simple example, the server your image is on is down. 
+Another reason could be that the image URL you have entered maps to an image being too big. All image URLs used for positive testing have had an image  
+size of nearly 100 KB. Negative testing images to trigger the 'not-found-page' have had an image size around 900 KB.
+
+In this cases, the application will lead you to another page, telling you that your page is not found and delivering some additional information.
 
 ![Invalid creator workflow][image4]
 
