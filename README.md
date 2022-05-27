@@ -1,4 +1,5 @@
 [//]: # (Image References)
+[image0]: https://readthedocs.org/projects/pycodestyle/badge/?version=latest "Inline docs"
 [image1]: ./assets/creatorExample_Berlin-IvanKarpov_55perc.png "None wrapped text"
 [image2]: ./assets/MemeWithVeryLongWordSplittedByTextWrapper_55perc.png "Wrong wrapped text"
 [image3]: ./assets/mod_photo-1651307313221-51c1ce725da6_55perc.png "Correct wrapped text"
@@ -6,7 +7,8 @@
 [image5]: ./assets/Meme_wolf_example.png "Random button example"
 [image6]: ./assets/greeceImageIvanKarpov_quoteKhalilGibran_65perc.png "Creator button example"
 
-[![Known Vulnerabilities](https://snyk.io/test/github/IloBe/Meme_Generator/badge.svg)](https://snyk.io/test/github/IloBe/Meme_Generator)
+![Inline docs][image0] [![Known Vulnerabilities](https://snyk.io/test/github/IloBe/Meme_Generator/badge.svg)](https://snyk.io/test/github/IloBe/Meme_Generator)
+
 
 # Python Meme Generator Project
 
