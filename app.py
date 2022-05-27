@@ -42,6 +42,7 @@ import pathlib
 import shutil
 import requests
 from flask import Flask, render_template, request, abort
+from werkzeug.utils import secure_filename
 
 from QuoteEngine.Ingestor import Ingestor
 from MemeGenerator import MemeEngine
@@ -133,11 +134,15 @@ def meme_post():
 
     # param names are in meme_form.html of templates dir
     image_url = request.form.get('image_url')
+    secure_url = image_url.strip('https://')
+    secure_url = secure_filename(secure_url)
+    app.logger.debug(f'Passed check if URL is secure: {secure_url}')
+    secure_url = 'https://' + secure_url
 
     # image type detection can be changed to strategy pattern as well
     try:
         app.logger.debug(f'Imge type detection for URL: {image_url}')
-        img_ext = pathlib.Path(image_url).suffix
+        img_ext = pathlib.Path(secure_url).suffix
         if img_ext in ['.jpg', '.jpeg', '.JPG', '.JPEG']:
             local_img = './tmp/local_app_img.jpg'
         elif img_ext in ['.png', '.PNG']:
@@ -174,7 +179,7 @@ def meme_post():
         print('Flask app /create meme post() calls make_meme()')
         path = meme.make_meme(local_img, body, author)
         print(f'Flask app /create meme_post(): image path: {path}')
-        os.remove(local_img)
+        os.remove(local_img)se
         return render_template('meme.html', path=path)
 
     except Exception as exc:
