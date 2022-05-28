@@ -20,9 +20,9 @@ on:
   schedule:
     - cron: '17 16 * * 6'
 
-
-jobs:
-  Analyze:
+jobs: 
+  analyze:
+    name: Analyze
     # CodeQL runs on ubuntu-latest, windows-latest, and macos-latest
     runs-on: ubuntu-latest
 
