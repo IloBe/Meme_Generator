@@ -81,6 +81,7 @@ jobs:
       # You may pin to the exact commit or the version.
       # uses: eeveebank/github-actions-snyk@065be101ee36fb7da6cb2582ccdf3817c91e4a88
       uses: eeveebank/github-actions-snyk@1.0.6
+      continue-on-error: true
       env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
