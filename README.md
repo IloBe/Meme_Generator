@@ -7,7 +7,7 @@
 [image5]: ./assets/Meme_wolf_example.png "Random button example"
 [image6]: ./assets/greeceImageIvanKarpov_quoteKhalilGibran_65perc.png "Creator button example"
 
-![example workflow](https://github.com/IloBe/Meme_Generator/actions/workflows/codeql-analysis.yml/badge.svg) ![Inline docs][image0] [![Known Vulnerabilities](https://snyk.io/test/github/IloBe/Meme_Generator/badge.svg)](https://snyk.io/test/github/IloBe/Meme_Generator)
+![example workflow](https://github.com/IloBe/Meme_Generator/actions/workflows/codeql-analysis.yml/badge.svg) ![Inline docs][image0]
 
 
 # Python Meme Generator Project
