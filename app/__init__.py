@@ -8,7 +8,9 @@ https://werkzeug.palletsprojects.com/en/2.1.x/exceptions/
 # Imports
 ##############################
 from flask import Flask, render_template
+from flask_wtf.csrf import CSRFProtect
 from werkzeug.exceptions import HTTPException, NotFound, InternalServerError
+from cryptography.fernet import Fernet
 
 
 ##############################
@@ -32,9 +34,13 @@ def get_app_instance():
 
     Set some security configurations according this blog post:
     https://www.securecoding.com/blog/flask-security-best-practices/
+    and
+    https://testdriven.io/blog/csrf-flask/
 
     Security test happens via Snyk app on https://app.snyk.io
     """
+    key = Fernet.generate_key()
+	
     app = Flask(__name__,
                 template_folder='../templates', static_folder='../static')
 
@@ -42,8 +48,13 @@ def get_app_instance():
         SESSION_COOKIE_SECURE=True,
         SESSION_COOKIE_HTTPONLY=True,
 		SESSION_COOKIE_SAMESITE='Lax',
+        SECRET_KEY=key,
     )
     
     app.register_error_handler(404, page_not_found)
     app.register_error_handler(500, internal_server_error)
+
+    csrf = CSRFProtect()
+    csrf.init_app(app)
+
     return app

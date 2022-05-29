@@ -133,15 +133,15 @@ def meme_post():
     # 3. Remove the temporary saved image.
 
     # param names are in meme_form.html of templates dir
-    image_url = request.form.get('image_url')
-    secure_url = image_url.strip('https://')
+    url = request.form.get('image_url')
+    secure_url = url.strip('https://')
     secure_url = secure_filename(secure_url)
     app.logger.debug(f'Passed check if URL is secure: {secure_url}')
     secure_url = 'https://' + secure_url
 
     # image type detection can be changed to strategy pattern as well
     try:
-        app.logger.debug(f'Imge type detection for URL: {image_url}')
+        app.logger.debug(f'Imge type detection for URL: {url}')
         img_ext = pathlib.Path(secure_url).suffix
         if img_ext in ['.jpg', '.jpeg', '.JPG', '.JPEG']:
             local_img = './tmp/local_app_img.jpg'
@@ -151,11 +151,11 @@ def meme_post():
             local_img = './tmp/local_app_img.webp'
         else:
             # no extention given, create a default jpg image
-            print(f'Flask /create: wrong .jpg,.png,.webp URL: {image_url}')
+            print(f'Flask /create: wrong .jpg,.png,.webp URL: {url}')
             print(f'==> img_ext is:{img_ext}')
             print('==> we transform it to .jpg image')
-            if len(image_url) > 0:
-                image_url = image_url + '.jpg'
+            if len(url) > 0:
+                url = url + '.jpg'
                 local_img = './tmp/local_app_img.jpg'
     except TypeError as err:
         print('Flask app meme post abort 404, no valid image type given ...')
@@ -163,8 +163,8 @@ def meme_post():
         abort(404)
 
     try:
-        app.logger.debug('Get imge content ...')
-        img_file = requests.get(image_url, stream=True).content
+        app.logger.debug('Get image content ...')
+        img_file = requests.get(url, stream=True).content
         if img_file is None:
             print('No valid image URL to get image bytes object is given.')
             print('Flask app post abort 404, no valid image file content ...')
@@ -179,7 +179,7 @@ def meme_post():
         print('Flask app /create meme post() calls make_meme()')
         path = meme.make_meme(local_img, body, author)
         print(f'Flask app /create meme_post(): image path: {path}')
-        os.remove(local_img)se
+        os.remove(local_img)
         return render_template('meme.html', path=path)
 
     except Exception as exc:

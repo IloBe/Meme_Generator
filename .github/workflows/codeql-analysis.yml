@@ -21,18 +21,6 @@ on:
     - cron: '17 16 * * 6'
 
 jobs:
-  security:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/python-3.9@v3
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --severity-threshold=high
-        
-
   analyze:
     name: Analyze
     # CodeQL runs on ubuntu-latest, windows-latest, and macos-latest
@@ -90,6 +78,16 @@ jobs:
       uses: github/codeql-action/analyze@v2
       with:
         setup-python-dependencies: false
+
+
+    - name: Snyk Scan
+      # You may pin to the exact commit or the version.
+      # uses: eeveebank/github-actions-snyk@065be101ee36fb7da6cb2582ccdf3817c91e4a88
+      uses: eeveebank/github-actions-snyk@1.0.6
+      continue-on-error: true
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
 
     - name: Python Code Quality and Lint
       # You may pin to the exact commit or the version.
