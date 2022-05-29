@@ -9,7 +9,7 @@
 # the `language` matrix defined below to confirm you have the correct set of
 # supported CodeQL languages.
 #
-name: "CodeQL"
+name: "CodeQL, with security check using SNYK"
 
 on:
   push:
@@ -20,7 +20,7 @@ on:
   schedule:
     - cron: '17 16 * * 6'
 
-jobs: 
+jobs:
   analyze:
     name: Analyze
     # CodeQL runs on ubuntu-latest, windows-latest, and macos-latest
@@ -59,9 +59,10 @@ jobs:
 
 
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
+    # Removed this part, using interpreted language Python
     # If this step fails, then you should remove it and run the build manually (see below)
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v2
+    #- name: Autobuild
+    #  uses: github/codeql-action/autobuild@v2
 
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun
@@ -75,6 +76,8 @@ jobs:
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
+      with:
+        setup-python-dependencies: false
 
 
     - name: Snyk Scan
@@ -83,10 +86,7 @@ jobs:
       uses: eeveebank/github-actions-snyk@1.0.6
       continue-on-error: true
       env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      with:
-        # Scan type
-        type: # optional, default is iac
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
 
     - name: Python Code Quality and Lint
