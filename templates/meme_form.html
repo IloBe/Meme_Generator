@@ -17,6 +17,7 @@
                 <input type="text" class="form-control" id="author" aria-describedby="Quote Author" placeholder="Shakespeare" name="author">
             </div>
             <button type="submit" class="btn btn-primary">Create Meme!</button>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         </form>
     </div>
 </div>
