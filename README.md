@@ -178,7 +178,7 @@ or on Miguel Grinbergs Flask [Mega-Tutorial](https://blog.miguelgrinberg.com/pos
 The project contains a flask app starter code in **app.py** for a simple web application. 
 
 - It runs by usage of the following command on your command-line terminal being in the 
-projects *app* directory:
+projects top level directory including:
 ```python3
 python app.py
 ```
