@@ -177,12 +177,12 @@ or on Miguel Grinbergs Flask [Mega-Tutorial](https://blog.miguelgrinberg.com/pos
 
 The project contains a flask app starter code in **app.py** for a simple web application. 
 
-- It runs by usage of the following command on your command-line terminal being in the 
-projects top level directory including:
+- It runs by usage of the following command as first action point on your command-line terminal being in the 
+projects top level directory:
 ```python3
 python app.py
 ```
-means, on localhost with port number 3001.
+Means, as implemented there on localhost with port number 3001 we have to trigger the following second action point.
 
 - Then on your browser using the *original given app.run() method*, by using the call 
 ```
