@@ -1,5 +1,5 @@
 [//]: # (Image References)
-[image0]: https://readthedocs.org/projects/pycodestyle/badge/?version=stable "Inline docs"
+[image0]: https://readthedocs.org/projects/pycodestyle/badge/ "Inline docs"
 [image1]: ./assets/creatorExample_Berlin-IvanKarpov_55perc.png "None wrapped text"
 [image2]: ./assets/MemeWithVeryLongWordSplittedByTextWrapper_55perc.png "Wrong wrapped text"
 [image3]: ./assets/mod_photo-1651307313221-51c1ce725da6_55perc.png "Correct wrapped text"
