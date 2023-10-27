@@ -5,7 +5,7 @@ cffi==1.15.0
 charset-normalizer==2.0.12
 click==8.0.3
 colorama==0.4.4
-cryptography==41.0.4
+cryptography==41.0.5
 dill==0.3.4
 et-xmlfile==1.1.0
 Flask==2.3.2
@@ -40,7 +40,7 @@ toml==0.10.2
 tomli==2.0.1
 typing_extensions==4.2.0
 urllib3==1.26.18
-Werkzeug==2.2.3
+Werkzeug==3.0.1
 wrapt==1.14.1
 WTForms==3.0.1
 zipp==3.8.0
